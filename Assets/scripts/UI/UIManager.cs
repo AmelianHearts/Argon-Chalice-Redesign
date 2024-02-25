@@ -17,6 +17,9 @@ public class UIManager : MonoBehaviour
     [Header("Dialogue")]
     [SerializeField] private GameObject dialogueScreen;
 
+    [Header("Ending")]
+    [SerializeField] private GameObject ending1Screen;
+
 
     private void Awake()
     {
@@ -24,6 +27,7 @@ public class UIManager : MonoBehaviour
         pauseScreen.SetActive(false);
         notebookScreen.SetActive(false);
         dialogueScreen.SetActive(false);
+        ending1Screen.SetActive(false);
         currentDisplay = 0;
         
     }
@@ -143,6 +147,13 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+    }
+    #endregion
+
+    #region
+    public void Ending1()
+    {
+        ending1Screen.SetActive(true);
     }
     #endregion
 }
