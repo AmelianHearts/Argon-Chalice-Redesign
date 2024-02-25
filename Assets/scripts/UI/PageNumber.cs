@@ -15,7 +15,7 @@ public class PageNumber : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
     }
     void Update(){
-        page = uiManager.currentDisplay;
+        page = uiManager.currentDisplay +1;
         pagenum.text = "Page " + page.ToString();
     
     }

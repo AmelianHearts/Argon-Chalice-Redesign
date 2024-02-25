@@ -7,9 +7,11 @@ public class CollectableList : MonoBehaviour
     public static CollectableList Instance;
 
     [SerializeField] public GameObject[] Collectables;
+    [SerializeField] public GameObject[] CollectablesR;
     [SerializeField] public Sprite[] Amulet;
     [SerializeField] public bool[] Collected;
     [SerializeField] public GameObject naScreen;
+    public PerspectiveSwitch player;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class CollectableList : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        player = FindObjectOfType<PerspectiveSwitch>();
     }
 
     public void DisplayItem(int index)
@@ -33,9 +36,14 @@ public class CollectableList : MonoBehaviour
         if (index >= Collectables.Length)
             index = Collectables.Length -1;
 
-        if (Collected[index])
+        if (Collected[index] && player.perspective == 1)
         {
             Collectables[index].gameObject.SetActive(true);
+        }
+
+        else if (Collected[index] && player.perspective == -1)
+        {
+            CollectablesR[index].gameObject.SetActive(true);
         }
 
         else 
@@ -49,6 +57,7 @@ public class CollectableList : MonoBehaviour
         for (int i = 0; i < Collectables.Length;  i++)
         {
             Collectables[i].gameObject.SetActive(false);
+            CollectablesR[i].gameObject.SetActive(false);
         }
   
         naScreen.gameObject.SetActive(false);

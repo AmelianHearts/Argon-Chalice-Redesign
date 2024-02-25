@@ -14,12 +14,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject notebookScreen;
     public int currentDisplay { get; private set; }
 
+    [Header("Dialogue")]
+    [SerializeField] private GameObject dialogueScreen;
+
 
     private void Awake()
     {
         gameOverScreen.SetActive(false);
         pauseScreen.SetActive(false);
         notebookScreen.SetActive(false);
+        dialogueScreen.SetActive(false);
         currentDisplay = 0;
         
     }
@@ -125,5 +129,20 @@ public class UIManager : MonoBehaviour
             
     }
 
+    #endregion
+
+    #region Dialogue
+    public void Dialogue(bool status)
+    {
+        //If status == true pause | if status == false unpause
+        dialogueScreen.SetActive(status);
+
+        //When pause status is true change timescale to 0 (time stops)
+        //when it's false change it back to 1 (time goes by normally)
+        if (status)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+    }
     #endregion
 }
